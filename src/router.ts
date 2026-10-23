@@ -16,16 +16,20 @@ export interface Route {
   view: View;
 }
 
+export interface RouterOptions<R extends Route> {
+  /** the hash gone to when none matches, e.g. "#/" */
+  fallback: string;
+  /** called before a view renders */
+  onRoute?: (route: R, params: string[]) => void;
+}
+
 /**
  * Shows the view of the hash now, then of each hash it changes to.
  *
  * @param routes the first one matching wins; a route can carry what the
  * application tells of it, e.g. a title
- * @param options.fallback the hash gone to when none matches, e.g. "#/"
- * @param options.onRoute called before a view renders
  */
-export function startRouter<R extends Route>(root: HTMLElement, routes: R[],
-    {fallback, onRoute}: {fallback: string, onRoute?: (route: R, params: string[]) => void}) {
+export function startRouter<R extends Route>(root: HTMLElement, routes: R[], {fallback, onRoute}: RouterOptions<R>) {
   let current: AbortController | undefined;
 
   function route() {

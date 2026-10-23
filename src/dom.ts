@@ -3,6 +3,8 @@
  */
 
 export type Child = Node | string | number | null | undefined | false;
+type Children = (Child | Child[])[];
+type Tag = keyof HTMLElementTagNameMap;
 
 /**
  * The element of the page with this id, which must be of a type.
@@ -20,8 +22,7 @@ export function $<T extends HTMLElement>(id: string, type: {new (): T, prototype
  * Creates an element. Attributes named "on..." take a listener; true and
  * false add or omit a boolean attribute.
  */
-export function h<K extends keyof HTMLElementTagNameMap>(
-  tag: K, attrs?: Record<string, any> | null, ...children: (Child | Child[])[]): HTMLElementTagNameMap[K] {
+export function h<K extends Tag>(tag: K, attrs?: Record<string, any> | null, ...children: Children): HTMLElementTagNameMap[K] {
   const el = document.createElement(tag);
   for (const [name, value] of Object.entries(attrs || {})) {
     if (name.startsWith('on') && typeof value === 'function')
@@ -35,7 +36,7 @@ export function h<K extends keyof HTMLElementTagNameMap>(
   return el;
 }
 
-function append(parent: Node, children: (Child | Child[])[]) {
+function append(parent: Node, children: Children) {
   for (const c of children) {
     if (Array.isArray(c))
       append(parent, c);
@@ -47,7 +48,7 @@ function append(parent: Node, children: (Child | Child[])[]) {
 }
 
 /** Replaces the content of an element. */
-export function replace(el: Element, ...children: (Child | Child[])[]) {
+export function replace(el: Element, ...children: Children) {
   el.replaceChildren();
   append(el, children);
 }
