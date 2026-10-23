@@ -1,0 +1,17 @@
+{
+  "name": "web-lib",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Framework-free helpers for the web pages of a few projects, copied into each of them",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "check": "tsc -p tsconfig.json",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.ts\"",
+    "sync": "node --disable-warning=ExperimentalWarning tools/sync.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2"
+  }
+}

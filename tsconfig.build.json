@@ -1,0 +1,13 @@
+{
+  "//": "The declarations copied beside the JS, for the projects that take JS: emitted into build/types by tools/sync.ts",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "types": [],
+    "rootDir": "src",
+    "outDir": "build/types"
+  },
+  "include": ["src"]
+}
