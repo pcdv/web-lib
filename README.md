@@ -9,6 +9,7 @@ Framework-free helpers for the web pages of a few projects, written in TypeScrip
 | `dialog`   | `ask`, `tell`: `prompt()` and `alert()` in a `<dialog>`       |
 | `settings` | `readSetting`, `writeSetting`: browser storage, if available |
 | `router`   | `startRouter`: the hash of the URL to a view, disposed after |
+| `tip`      | `tip`: a short help over an element hovered, with a button to more |
 
 ## Copying into a project
 
